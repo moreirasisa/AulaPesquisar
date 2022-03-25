@@ -1,0 +1,70 @@
+﻿@model IEnumerable<AulaPesquisar.Pessoa>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h1>Pesquisa de Pessoas</h1>
+    </div>
+    <div class="card-body">
+        <form action="/Pessoas/Index" method="get">
+            <div class="row">
+                <a href="/Pessoas/Create" class="btn btn-info col-2">
+                    Novo Cadastro
+                </a>
+                <input class="form-control col-4 mx-2" type="text" name="texto" placeholder="Digite sua busca" />
+                <button type="submit" class="btn btn-primary col-2">
+                    Pesquisar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Nome
+            </th>
+            <th>
+                Idade
+            </th>
+            <th>
+                CPF
+            </th>
+            <th>
+                RG
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cpf)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rg)
+            </td>
+            <td>
+                <a href="/Pessoas/Edit/@item.Id" class="btn btn-warning">
+                    Editar Pessoa
+                </a>
+                <a href="/Pessoas/Delete/@item.Id" class="btn btn-danger">
+                    Deletar Pessoa
+                </a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
